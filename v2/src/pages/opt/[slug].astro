@@ -1,0 +1,79 @@
+---
+import Base from '../../layouts/Base.astro';
+import { products, categoryOf } from '../../data/products.js';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const category = categoryOf(product.category);
+
+// Product без offers: публичных цен нет, а выдумывать цену и наличие нельзя.
+// Как только поставщик решит показывать цены — сюда добавляется offers.
+const productLd = {
+  '@type': 'Product',
+  name: product.title,
+  description: product.lead,
+  image: product.image,
+  brand: { '@type': 'Brand', name: product.brand },
+  category: category?.title,
+  additionalProperty: product.specs.map(([name, value]) => ({
+    '@type': 'PropertyValue',
+    name,
+    value,
+  })),
+};
+const breadcrumbs = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: '/' },
+    { '@type': 'ListItem', position: 2, name: 'Каталог', item: '/opt/' },
+    { '@type': 'ListItem', position: 3, name: product.title, item: `/opt/${product.slug}/` },
+  ],
+};
+---
+<Base
+  title={`${product.title} оптом — Орлан`}
+  description={product.lead}
+  world="opt"
+  jsonld={[productLd, breadcrumbs]}
+>
+  <div class="shell">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span>/</span>
+      <a href="/opt/">Каталог</a><span>/</span>
+      {category?.title}
+    </nav>
+
+    <article class="product">
+      <div class={`product-visual ${product.imageBg}`}>
+        <img src={product.image} alt={product.alt} />
+      </div>
+
+      <div class="product-copy">
+        <p class="eyebrow">{product.brand}</p>
+        <h1>{product.title}</h1>
+        <p class="lead">{product.lead}</p>
+
+        <table class="specs">
+          <tbody>
+            {product.specs.map(([name, value]) => (
+              <tr><th scope="row">{name}</th><td>{value}</td></tr>
+            ))}
+          </tbody>
+        </table>
+
+        <button class="cta" type="button" data-order={product.title}>Заказать →</button>
+        <p class="order-note">
+          Оставьте телефон — перезвоним, уточним объём и назовём цену.
+          Онлайн-оплаты на сайте нет.
+        </p>
+        <p style="margin-top:1.5rem"><span class="demo-note">Демонстрационные данные</span></p>
+      </div>
+    </article>
+  </div>
+</Base>

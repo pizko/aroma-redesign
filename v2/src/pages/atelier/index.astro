@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const services = [
+  ['Персональные духи', 'Индивидуальная композиция, которую собираем вместе с человеком.'],
+  ['Аромат для бренда', 'Парфюмерная подпись компании: для пространства, подарков и мероприятий.'],
+  ['Парфюм-бар', 'Формат для частного праздника или корпоративного события.'],
+  ['Подарочный сертификат', 'Сертификат на создание персональных духов в ателье.'],
+];
+
+const personLd = {
+  '@type': 'Person',
+  '@id': '#perfumer',
+  name: 'Ханна Шаркань',
+  jobTitle: 'Парфюмер',
+  worksFor: { '@id': '#organization' },
+};
+const serviceLd = {
+  '@type': 'Service',
+  name: 'Парфюмерное ателье',
+  serviceType: 'Создание персональных и авторских ароматов',
+  provider: { '@id': '#organization' },
+  areaServed: 'Москва',
+};
+const breadcrumbs = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: '/' },
+    { '@type': 'ListItem', position: 2, name: 'Ателье', item: '/atelier/' },
+  ],
+};
+---
+<Base
+  title="Парфюмерное ателье Hanna Sharkan — Орлан"
+  description="Создание персональных духов, ароматов для бренда и парфюм-бар в Москве."
+  world="atelier"
+  jsonld={[personLd, serviceLd, breadcrumbs]}
+>
+  <div class="shell">
+    <section class="atelier-hero">
+      <div>
+        <p class="eyebrow rise">Hanna Sharkan · Москва</p>
+        <h1 class="rise">Аромат, которого больше ни у кого нет</h1>
+        <p class="rise">
+          Отдельное направление для частных клиентов, мероприятий и брендов,
+          которым нужна собственная парфюмерная композиция. Работа идёт
+          в ателье, вместе с парфюмером.
+        </p>
+      </div>
+      <div class="atelier-portrait">
+        <img
+          src="/assets/hanna-2.png"
+          alt="Парфюмер Ханна Шаркань с флаконом авторского аромата"
+        />
+      </div>
+    </section>
+
+    <section class="atelier-list" aria-label="Услуги ателье">
+      {services.map(([title, text]) => (
+        <a class="atelier-item" href="#zapis">
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </a>
+      ))}
+    </section>
+
+    <p id="zapis" style="margin-top:3rem">
+      <button class="cta" type="button" data-order="Парфюмерное ателье">Записаться →</button>
+    </p>
+    <p style="margin-top:1.5rem"><span class="demo-note">Большая Филёвская, 17 · +7 (965) 187-91-94</span></p>
+  </div>
+</Base>

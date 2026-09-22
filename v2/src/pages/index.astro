@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+
+const doors = [
+  {
+    href: '/opt/',
+    swatch: '#431319',
+    title: 'Закупить оптом',
+    text: 'Готовые коллекции со склада: диффузоры, свечи, спреи, наборы.',
+    go: 'В каталог',
+  },
+  {
+    href: '/stm/',
+    swatch: '#bda478',
+    title: 'Выпустить под своей маркой',
+    text: 'Аромат, тара, этикетка и производство партии под вашим брендом.',
+    go: 'О производстве',
+  },
+  {
+    href: '/atelier/',
+    swatch: '#7a5c62',
+    title: 'Создать аромат',
+    text: 'Парфюмерное ателье: для человека, для бренда, для пространства.',
+    go: 'В ателье',
+  },
+];
+---
+<Base
+  title="Орлан — ароматический дом"
+  description="Оптовые поставки аромапродукции, производство под маркой заказчика и парфюмерное ателье."
+  world="portal"
+>
+  <section class="shell" style="padding-block: clamp(3.5rem, 10vw, 8rem) 0;">
+    <p class="eyebrow rise">Москва</p>
+    <h1 class="portal-h1 rise">Три разных дела под одним именем</h1>
+    <p class="portal-lede rise">
+      Опт, контрактное производство и парфюмерное ателье. У каждого направления
+      свой клиент, свой разговор и своя страница — выберите, зачем вы пришли.
+    </p>
+
+    <div class="portal-grid">
+      {doors.map((d) => (
+        <a class="portal-door" href={d.href}>
+          <span class="swatch" style={`background:${d.swatch}`}></span>
+          <h2>{d.title}</h2>
+          <p>{d.text}</p>
+          <span class="go">{d.go} →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,86 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import '../styles/worlds.css';
+
+const {
+  title,
+  description = '',
+  world = 'portal',
+  jsonld = [],
+} = Astro.props;
+
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/opt/',     label: 'Опт' },
+  { href: '/stm/',     label: 'Своя марка' },
+  { href: '/atelier/', label: 'Ателье' },
+];
+const graph = [
+  {
+    '@type': 'Organization',
+    '@id': '#organization',
+    name: 'Орлан',
+    telephone: '+7-495-544-21-44',
+    email: 'info@opt-aroma.ru',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Каширское шоссе, 122',
+      addressLocality: 'Москва',
+      addressCountry: 'RU',
+    },
+  },
+  {
+    '@type': 'WebSite',
+    '@id': '#website',
+    name: 'Орлан — ароматический дом',
+    publisher: { '@id': '#organization' },
+    inLanguage: 'ru-RU',
+  },
+  ...jsonld,
+];
+---
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <ClientRouter />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })} />
+  </head>
+
+  <body data-world={world}>
+    <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="/" transition:name="wordmark">
+        <span>ОРЛАН</span>
+        <small>ароматический дом</small>
+      </a>
+      <nav class="site-nav" aria-label="Разделы">
+        {nav.map((item) => (
+          <a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <span>Москва, Каширское шоссе, 122 · +7 (495) 544-21-44</span>
+      <span class="demo-note">Демонстрационная версия</span>
+    </footer>
+  </body>
+</html>

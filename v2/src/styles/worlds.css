@@ -1,0 +1,261 @@
+/* ============================================================
+   ТРИ МИРА
+   Каркас общий, но палитра, шрифты, композиция и ритм — свои.
+   Переключается атрибутом data-world на <body>.
+   ============================================================ */
+
+/* ─────────────────────────────────────────────
+   ПОРТАЛ — главная. Нейтральная, но тёмная:
+   служит паузой перед входом в любой из трёх миров.
+   ───────────────────────────────────────────── */
+[data-world="portal"] {
+  --bg: #16120f;
+  --ink: #ece3d2;
+  --ink-soft: #9a8d78;
+  --accent: #bda478;
+  --line: rgba(236, 227, 210, .17);
+  color-scheme: dark;
+}
+[data-world="portal"] .portal-h1 {
+  max-width: 16ch;
+  margin: 0 0 1.5rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 1.02;
+}
+[data-world="portal"] .portal-lede { max-width: 48ch; color: var(--ink-soft); font-size: 1.05rem; }
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(3rem, 7vw, 6rem);
+  border-top: 1px solid var(--line);
+}
+.portal-door {
+  display: flex; flex-direction: column; gap: .9rem;
+  padding: clamp(1.8rem, 3vw, 2.8rem) clamp(1.2rem, 2vw, 2rem) clamp(2.4rem, 4vw, 3.4rem);
+  border-right: 1px solid var(--line);
+  text-decoration: none;
+  transition: background-color var(--t-hover) var(--ease);
+}
+.portal-door:last-child { border-right: 0; }
+.portal-door:hover { background: rgba(189, 164, 120, .08); }
+.portal-door .swatch { width: 100%; height: 5px; transition: height var(--t-hover) var(--ease); }
+.portal-door:hover .swatch { height: 12px; }
+.portal-door h2 { margin: .4rem 0 0; font-family: var(--display); font-weight: 400; font-size: clamp(1.5rem, 2.4vw, 2.1rem); }
+.portal-door p { margin: 0; color: var(--ink-soft); font-size: .92rem; }
+.portal-door .go { margin-top: auto; padding-top: 1.4rem; color: var(--accent); font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; }
+
+/* ─────────────────────────────────────────────
+   МИР 1 — ОПТ. Торговый зал.
+   Светло, плотно, по-деловому. Каталог как инструмент
+   закупщика: сетка, линии, характеристики, ничего лишнего.
+   ───────────────────────────────────────────── */
+[data-world="opt"] {
+  --bg: #fbfaf6;
+  --ink: #191817;
+  --ink-soft: #6a645b;
+  --accent: #431319;
+  --line: rgba(25, 24, 23, .16);
+}
+[data-world="opt"] h1 {
+  margin: 0 0 1.1rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 4.4vw, 3.9rem);
+  line-height: 1.04;
+}
+[data-world="opt"] h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.5rem, 2.6vw, 2.3rem); }
+
+.opt-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+  align-items: end;
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+.opt-head p { max-width: 44ch; margin: 0; color: var(--ink-soft); }
+
+.opt-filters { display: flex; flex-wrap: wrap; gap: .5rem; padding-bottom: 1.5rem; }
+.opt-filters a {
+  padding: .55rem 1.05rem;
+  border: 1px solid var(--line);
+  font-size: .74rem; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink-soft);
+  transition: color var(--t-hover) var(--ease), border-color var(--t-hover) var(--ease);
+}
+.opt-filters a:hover { color: var(--ink); border-color: var(--ink); }
+.opt-filters a[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+.opt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.opt-card {
+  display: flex; flex-direction: column;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+.opt-visual {
+  height: clamp(260px, 26vw, 380px);
+  display: grid; place-items: center;
+  overflow: hidden;
+  animation: open var(--t-enter) var(--ease) both;
+}
+.opt-visual.light { background: #ece7dc; }
+.opt-visual.dark  { background: #4c1a21; }
+.opt-visual img {
+  width: 74%; height: 74%; object-fit: contain;
+  transition: transform var(--t-hover) var(--ease);
+}
+.opt-visual.light img { mix-blend-mode: multiply; }
+.opt-card:hover .opt-visual img { transform: scale(1.04); }
+.opt-meta { padding: 1.15rem 1.3rem 1.4rem; }
+.opt-meta .brand { font-size: .66rem; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-soft); }
+.opt-meta h3 { margin: .45rem 0 .35rem; font-family: var(--display); font-weight: 400; font-size: 1.22rem; line-height: 1.2; }
+.opt-meta .lead { margin: 0; font-size: .86rem; color: var(--ink-soft); }
+
+/* Карточка товара */
+.product {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  padding-block: clamp(1.5rem, 3vw, 3rem);
+}
+.product-visual {
+  display: grid; place-items: center;
+  min-height: min(62vw, 560px);
+  animation: open var(--t-enter) var(--ease) both;
+}
+.product-visual.light { background: #ece7dc; }
+.product-visual.dark  { background: #4c1a21; }
+.product-visual img { width: 76%; height: auto; }
+.product-visual.light img { mix-blend-mode: multiply; }
+
+.crumbs { padding-block: 1.4rem; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.crumbs a { text-decoration: none; }
+.crumbs a:hover { color: var(--ink); }
+.crumbs span { margin: 0 .5rem; opacity: .5; }
+
+.product-copy h1 { font-size: clamp(1.7rem, 3.2vw, 2.7rem); }
+.product-copy .lead { max-width: 44ch; color: var(--ink-soft); }
+.specs { width: 100%; margin: 2rem 0; border-collapse: collapse; font-size: .92rem; }
+.specs th, .specs td { padding: .85rem 0; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.specs th { width: 42%; font-weight: 400; color: var(--ink-soft); }
+.order-note { margin: 1rem 0 0; font-size: .8rem; color: var(--ink-soft); }
+
+/* ─────────────────────────────────────────────
+   МИР 2 — СВОЯ МАРКА. Производство.
+   Тёмно, широкими полосами, технические данные
+   моноширинным. Ощущение спецификации, не витрины.
+   ───────────────────────────────────────────── */
+[data-world="stm"] {
+  --bg: #14100e;
+  --ink: #e6ddcc;
+  --ink-soft: #8d8172;
+  --accent: #bda478;
+  --line: rgba(230, 221, 204, .16);
+  color-scheme: dark;
+}
+[data-world="stm"] h1 {
+  margin: 0 0 1.4rem;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: clamp(2rem, 5.4vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+[data-world="stm"] h2 {
+  font-family: var(--body); font-weight: 600;
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  letter-spacing: -.01em; text-transform: uppercase;
+}
+.stm-hero { padding-block: clamp(3rem, 8vw, 7rem) clamp(2rem, 5vw, 4rem); }
+.stm-hero p { max-width: 52ch; color: var(--ink-soft); font-size: 1.05rem; }
+.stm-spec { margin-top: 2.5rem; font-family: var(--mono); font-size: .76rem; letter-spacing: .04em; color: var(--accent); }
+
+.stm-steps { border-top: 1px solid var(--line); }
+.stm-step {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: baseline;
+  padding-block: clamp(1.6rem, 3vw, 2.6rem);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--t-hover) var(--ease);
+}
+.stm-step:hover { background: rgba(189, 164, 120, .06); }
+.stm-step .num { font-family: var(--mono); font-size: 2.1rem; line-height: 1; color: var(--accent); }
+.stm-step p { margin: 0; color: var(--ink-soft); }
+
+.stm-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: clamp(3rem, 6vw, 5rem); background: var(--line); }
+.stm-option { padding: clamp(1.6rem, 3vw, 2.6rem); background: var(--bg); }
+.stm-option .tag { font-family: var(--mono); font-size: .72rem; color: var(--accent); }
+.stm-option p { margin: .8rem 0 0; color: var(--ink-soft); }
+
+/* ─────────────────────────────────────────────
+   МИР 3 — АТЕЛЬЕ. Авторское.
+   Светло, разрежённо, крупная антиква, почти без линий.
+   Ощущение галереи: воздух вместо интерфейса.
+   ───────────────────────────────────────────── */
+[data-world="atelier"] {
+  --bg: #f6f1e8;
+  --ink: #2b2521;
+  --ink-soft: #7d7167;
+  --accent: #7a5c62;
+  --line: rgba(43, 37, 33, .12);
+}
+[data-world="atelier"] .site-header { border-bottom-color: transparent; }
+[data-world="atelier"] h1 {
+  max-width: 15ch;
+  margin: 0 0 2rem;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 5.6vw, 4.6rem);
+  line-height: 1.06;
+}
+[data-world="atelier"] h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
+
+.atelier-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  padding-block: clamp(3.5rem, 9vw, 8rem);
+}
+.atelier-hero p { max-width: 40ch; font-size: 1.12rem; line-height: 1.6; color: var(--ink-soft); }
+.atelier-portrait { overflow: hidden; animation: open var(--t-enter) var(--ease) .2s both; }
+.atelier-portrait img { width: 100%; }
+
+.atelier-list { margin-top: clamp(2rem, 5vw, 4rem); }
+.atelier-item {
+  display: block;
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: padding-left var(--t-hover) var(--ease);
+}
+.atelier-item:first-child { border-top: 1px solid var(--line); }
+.atelier-item:hover { padding-left: .8rem; }
+.atelier-item h3 { margin: 0 0 .4rem; font-family: var(--display); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.atelier-item p { margin: 0; max-width: 52ch; color: var(--ink-soft); font-size: .95rem; }
+
+/* ─────────────────────────────────────────────
+   Адаптив
+   ───────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .opt-grid { grid-template-columns: 1fr 1fr; }
+  .portal-grid { grid-template-columns: 1fr; }
+  .portal-door { border-right: 0; border-bottom: 1px solid var(--line); }
+  .product, .atelier-hero, .opt-head { grid-template-columns: 1fr; }
+  .stm-step { grid-template-columns: 3.5rem minmax(0, 1fr); }
+  .stm-step p { grid-column: 2; }
+  .stm-options { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .opt-grid { grid-template-columns: 1fr; }
+}

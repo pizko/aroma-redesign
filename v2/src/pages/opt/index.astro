@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import { products, categories } from '../../data/products.js';
+
+const itemList = {
+  '@type': 'ItemList',
+  name: 'Каталог аромапродукции',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `/opt/${p.slug}/`,
+    name: p.title,
+  })),
+};
+const breadcrumbs = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: '/' },
+    { '@type': 'ListItem', position: 2, name: 'Каталог', item: '/opt/' },
+  ],
+};
+---
+<Base
+  title="Каталог аромапродукции оптом — Орлан"
+  description="Диффузоры, свечи, спреи, подарочные наборы и ароматизаторы для автомобиля оптом. Цены и наличие по запросу."
+  world="opt"
+  jsonld={[itemList, breadcrumbs]}
+>
+  <div class="shell">
+    <div class="opt-head">
+      <div>
+        <p class="eyebrow rise">Оптовые поставки</p>
+        <h1 class="rise">Каталог</h1>
+      </div>
+      <p class="rise">
+        Демонстрационная выборка. Полный каталог — около 3000 позиций,
+        загружается выгрузкой. Цены и минимальные партии сообщаем по запросу.
+      </p>
+    </div>
+
+    <nav class="opt-filters" aria-label="Категории">
+      <a href="/opt/" aria-current="page">Все</a>
+      {categories.map((c) => <a href={`/opt/#${c.slug}`}>{c.title}</a>)}
+    </nav>
+
+    <div class="opt-grid">
+      {products.map((p) => (
+        <a class="opt-card" href={`/opt/${p.slug}/`}>
+          <span class={`opt-visual ${p.imageBg}`}>
+            <img src={p.image} alt={p.alt} loading="lazy" />
+          </span>
+          <span class="opt-meta">
+            <span class="brand">{p.brand}</span>
+            <h3>{p.title}</h3>
+            <p class="lead">{p.lead}</p>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <p style="margin-top:2rem"><span class="demo-note">Показано {products.length} позиций из демонстрационного набора</span></p>
+  </div>
+</Base>

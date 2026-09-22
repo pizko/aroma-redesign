@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const steps = [
+  ['01', 'Состав коллекции', 'Выбираем виды продукции и количество ароматов в линейке.'],
+  ['02', 'Ценовой уровень',  'Определяем ориентиры по аромату, таре и упаковке.'],
+  ['03', 'Дизайн и образцы', 'Согласовываем этикетку и упаковку, при необходимости — пилотную партию.'],
+  ['04', 'Производство',     'Комплектуем, маркируем, упаковываем и готовим партию к отгрузке.'],
+];
+
+const serviceLd = {
+  '@type': 'Service',
+  name: 'Контрактное производство аромапродукции',
+  serviceType: 'Производство ароматической продукции под маркой заказчика',
+  provider: { '@id': '#organization' },
+  areaServed: 'Россия',
+};
+const breadcrumbs = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: '/' },
+    { '@type': 'ListItem', position: 2, name: 'Своя марка', item: '/stm/' },
+  ],
+};
+---
+<Base
+  title="Производство аромапродукции под вашей маркой — Орлан"
+  description="Контрактное производство: подбор аромата, тары и упаковки, выпуск партии под маркой заказчика."
+  world="stm"
+  jsonld={[serviceLd, breadcrumbs]}
+>
+  <div class="shell">
+    <section class="stm-hero">
+      <p class="eyebrow rise">Контрактное производство</p>
+      <h1 class="rise">Линейка ароматов под вашей маркой</h1>
+      <p class="rise">
+        Формат проекта определяется задачей, ценовым уровнем и составом будущей
+        коллекции. Можно работать с готовой тарой и выбранными ароматами —
+        или собирать решение с индивидуальными элементами.
+      </p>
+      <p class="stm-spec rise">производство: Россия · Stoneglow (Великобритания)</p>
+    </section>
+
+    <section class="stm-steps" aria-label="Этапы работы">
+      {steps.map(([num, title, text]) => (
+        <div class="stm-step">
+          <span class="num">{num}</span>
+          <h2>{title}</h2>
+          <p>{text}</p>
+        </div>
+      ))}
+    </section>
+
+    <section class="stm-options">
+      <article class="stm-option">
+        <p class="tag">вариант 01</p>
+        <h2>Производство в России</h2>
+        <p>Подбор аромата, тары, этикетки и упаковки с комплектацией готовой продукции.</p>
+      </article>
+      <article class="stm-option">
+        <p class="tag">вариант 02</p>
+        <h2>На базе Stoneglow</h2>
+        <p>Выбор изделий и ароматов из каталога фабрики с дальнейшим брендированием.</p>
+      </article>
+    </section>
+
+    <p style="margin-top:3rem">
+      <button class="cta" type="button" data-order="Контрактное производство">Обсудить проект →</button>
+    </p>
+  </div>
+</Base>
