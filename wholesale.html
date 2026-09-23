@@ -34,6 +34,26 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://pizko.github.io/aroma-redesign/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Каталог оптом",
+        "item": "https://pizko.github.io/aroma-redesign/wholesale.html"
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="inner-page" data-inquiry-recipient="info@opt-aroma.ru">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -57,6 +77,12 @@
     <a class="header-contact" href="#request">Контакты</a>
   </header>
 
+  <nav class="crumbs" aria-label="Хлебные крошки">
+    <a href="index.html">Главная</a>
+    <i aria-hidden="true">/</i>
+    <span aria-current="page">Каталог оптом</span>
+  </nav>
+
   <main id="main">
     <section class="page-hero" aria-labelledby="page-title">
       <div class="page-hero-copy reveal reveal-left">
@@ -75,56 +101,79 @@
       </div>
     </section>
 
-    <section class="catalog section page-catalog" id="catalog" aria-labelledby="catalog-title">
+    <section class="catalog section page-catalog" id="catalog" data-catalog aria-labelledby="catalog-title">
       <div class="section-heading reveal">
         <div><p class="eyebrow">Категории</p><h2 id="catalog-title">Продукция для разных форматов продаж</h2></div>
         <p>На странице не указаны цены и наличие: они подтверждаются в ответ на конкретный оптовый запрос.</p>
       </div>
 
-      <div class="filters reveal" role="group" aria-label="Фильтр каталога">
-        <button class="filter is-active" type="button" data-filter="all">Все</button>
-        <button class="filter" type="button" data-filter="home">Для дома</button>
-        <button class="filter" type="button" data-filter="gift">Подарки</button>
-        <button class="filter" type="button" data-filter="auto">Авто и гардероб</button>
+      <div class="catalog-toolbar reveal">
+        <div>
+          <div class="filter-group">
+            <p class="filter-group-label" id="filter-category-label">Категория</p>
+            <div class="filters" role="group" aria-labelledby="filter-category-label" data-filter-group="category">
+              <button class="filter is-active" type="button" data-filter="all">Все</button>
+              <button class="filter" type="button" data-filter="home">Для дома</button>
+              <button class="filter" type="button" data-filter="gift">Подарки</button>
+              <button class="filter" type="button" data-filter="auto">Авто и гардероб</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <p class="filter-group-label" id="filter-brand-label">Бренд</p>
+            <div class="filters" role="group" aria-labelledby="filter-brand-label" data-filter-group="brand">
+              <button class="filter is-active" type="button" data-filter="all">Все</button>
+              <button class="filter" type="button" data-filter="stoneglow">Stoneglow</button>
+              <button class="filter" type="button" data-filter="whispy">Whispy</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-search">
+          <label for="catalog-search">Поиск по каталогу</label>
+          <input id="catalog-search" type="search" autocomplete="off" placeholder="диффузор, саше, свечи" data-catalog-search>
+        </div>
       </div>
 
+      <p class="catalog-count" role="status" aria-live="polite" data-catalog-count></p>
+
       <div class="product-grid store-grid">
-        <article class="product-card store-card reveal" data-category="home">
+        <article class="product-card store-card reveal" data-category="home" data-brand="whispy" data-search="аромадиффузоры аромадиффузор диффузор палочки whispy дом офис">
           <div class="product-visual burgundy"><img src="assets/whispy-diffuser-cut.png" alt="Аромадиффузор Whispy"></div>
           <div class="product-meta"><div><p>Whispy</p><h3>Аромадиффузоры</h3></div><span>01</span></div>
           <div class="store-card-actions"><p>Для дома, офиса и коммерческих пространств.</p><button type="button" data-open-inquiry data-interest="Аромадиффузоры оптом">Заказать <span>→</span></button></div>
         </article>
 
-        <article class="product-card store-card reveal" data-category="home gift">
+        <article class="product-card store-card reveal" data-category="home gift" data-brand="stoneglow" data-search="ароматические свечи свеча свечи stoneglow воск интерьер">
           <div class="product-visual ivory"><img src="assets/opt-hero-crop.jpg" alt="Ароматическая свеча Stoneglow в коробке"></div>
           <div class="product-meta"><div><p>Stoneglow</p><h3>Ароматические свечи</h3></div><span>02</span></div>
           <div class="store-card-actions"><p>Коллекции ароматических свечей для интерьерной розницы.</p><button type="button" data-open-inquiry data-interest="Ароматические свечи Stoneglow оптом">Заказать <span>→</span></button></div>
         </article>
 
-        <article class="product-card store-card reveal" data-category="home">
+        <article class="product-card store-card reveal" data-category="home" data-brand="whispy" data-search="спреи для текстиля спрей текстиль бельё шторы мебель одежда whispy">
           <div class="product-visual amber"><img src="assets/whispy-spray-cut.png" alt="Спрей Whispy для текстиля и одежды"></div>
           <div class="product-meta"><div><p>Whispy</p><h3>Спреи для текстиля</h3></div><span>03</span></div>
           <div class="store-card-actions"><p>Форматы для белья, штор, мебели и одежды.</p><button type="button" data-open-inquiry data-interest="Спреи для текстиля оптом">Заказать <span>→</span></button></div>
         </article>
 
-        <article class="product-card store-card reveal" data-category="auto gift">
+        <article class="product-card store-card reveal" data-category="auto gift" data-brand="whispy" data-search="авто и гардероб автомобиль авто шкаф гардероб ароматизатор whispy">
           <div class="product-visual smoke"><img src="assets/whispy-auto-cut.png" alt="Ароматизатор Whispy для автомобиля и шкафа"></div>
           <div class="product-meta"><div><p>Whispy</p><h3>Авто и гардероб</h3></div><span>04</span></div>
           <div class="store-card-actions"><p>Ароматизаторы для автомобиля, шкафа и гардеробной.</p><button type="button" data-open-inquiry data-interest="Ароматы для авто и шкафа оптом">Заказать <span>→</span></button></div>
         </article>
 
-        <article class="product-card store-card reveal" data-category="gift home">
+        <article class="product-card store-card reveal" data-category="gift home" data-brand="whispy" data-search="аромасаше саше аромасаше гардероб чемодан whispy">
           <div class="product-visual sand"><img src="assets/whispy-card-1.jpg" alt="Подарочная подборка продукции Whispy"></div>
           <div class="product-meta"><div><p>Whispy</p><h3>Аромасаше</h3></div><span>05</span></div>
           <div class="store-card-actions"><p>Для гардероба, чемодана, интерьера и подарочных вложений.</p><button type="button" data-open-inquiry data-interest="Аромасаше оптом">Заказать <span>→</span></button></div>
         </article>
 
-        <article class="product-card store-card reveal" data-category="gift">
+        <article class="product-card store-card reveal" data-category="gift" data-brand="whispy" data-search="подарочные наборы подарочный набор наборы корпоративный подарок whispy">
           <div class="product-visual burgundy"><img src="assets/opt-set3.png" alt="Подарочная упаковка Whispy с аромадиффузором"></div>
-          <div class="product-meta"><div><p>Готовые решения</p><h3>Подарочные наборы</h3></div><span>06</span></div>
+          <div class="product-meta"><div><p>Whispy</p><h3>Подарочные наборы</h3></div><span>06</span></div>
           <div class="store-card-actions"><p>Подборки ароматической продукции для подарков и корпоративных заказов.</p><button type="button" data-open-inquiry data-interest="Подарочные наборы оптом">Заказать <span>→</span></button></div>
         </article>
       </div>
+
+      <p class="catalog-empty" hidden data-catalog-empty>По этому запросу ничего не нашлось. Сбросьте фильтры или напишите, что нужно, — подберём вручную.</p>
     </section>
 
     <section class="order-steps section" id="how-to-order" aria-labelledby="order-title">

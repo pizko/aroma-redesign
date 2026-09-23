@@ -12,19 +12,61 @@ menu?.addEventListener('click', (event) => {
   menuButton?.setAttribute('aria-expanded', 'false');
 });
 
-const filterButtons = [...document.querySelectorAll('.filter')];
-const productCards = [...document.querySelectorAll('.product-card')];
+function setupCatalog(root) {
+  const cards = [...root.querySelectorAll('.product-card')];
+  const groups = [...root.querySelectorAll('[data-filter-group]')];
+  const search = root.querySelector('[data-catalog-search]');
+  const counter = root.querySelector('[data-catalog-count]');
+  const empty = root.querySelector('[data-catalog-empty]');
+  const state = {};
 
-filterButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const selected = button.dataset.filter;
-    filterButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-    productCards.forEach((card) => {
-      const categories = card.dataset.category.split(' ');
-      card.hidden = selected !== 'all' && !categories.includes(selected);
+  groups.forEach((group) => { state[group.dataset.filterGroup] = 'all'; });
+
+  const plural = (n) => {
+    const tail = n % 100 > 10 && n % 100 < 20 ? 0 : n % 10;
+    if (tail === 1) return 'категория';
+    if (tail > 1 && tail < 5) return 'категории';
+    return 'категорий';
+  };
+
+  const apply = () => {
+    const query = (search?.value || '').trim().toLowerCase();
+    let shown = 0;
+
+    cards.forEach((card) => {
+      const byGroups = Object.entries(state).every(([key, value]) =>
+        value === 'all' || (card.dataset[key] || '').split(' ').includes(value));
+      const haystack = ((card.dataset.search || '') + ' ' + card.textContent).toLowerCase();
+      const byQuery = !query || haystack.includes(query);
+      card.hidden = !(byGroups && byQuery);
+      if (!card.hidden) shown += 1;
+    });
+
+    if (counter) counter.textContent = shown + ' ' + plural(shown) + ' из ' + cards.length;
+    if (empty) empty.hidden = shown !== 0;
+  };
+
+  groups.forEach((group) => {
+    const buttons = [...group.querySelectorAll('.filter')];
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        state[group.dataset.filterGroup] = button.dataset.filter;
+        buttons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        apply();
+      });
+      button.setAttribute('aria-pressed', String(button.classList.contains('is-active')));
     });
   });
-});
+
+  search?.addEventListener('input', apply);
+  apply();
+}
+
+document.querySelectorAll('[data-catalog]').forEach(setupCatalog);
 
 const hero = document.querySelector('.hero');
 const directionLinks = [...document.querySelectorAll('[data-hero-target]')];
@@ -42,11 +84,20 @@ function setHeroScene(scene) {
   });
 }
 
+const coarsePointer = window.matchMedia('(hover: none)').matches;
+
 directionLinks.forEach((link) => {
   const activate = () => setHeroScene(link.dataset.heroTarget);
   link.addEventListener('mouseenter', activate);
   link.addEventListener('focus', activate);
-  link.addEventListener('pointerdown', activate);
+  link.addEventListener('click', (event) => {
+    // На сенсорном экране навести курсор нельзя: первое касание показывает сцену,
+    // второе — открывает страницу направления.
+    if (coarsePointer && !link.classList.contains('is-active')) {
+      event.preventDefault();
+      activate();
+    }
+  });
 });
 
 heroNavLinks.forEach((link) => {

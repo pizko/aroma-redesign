@@ -105,6 +105,7 @@
             <span class="direction-arrow" aria-hidden="true">→</span>
           </a>
         </nav>
+        <p class="direction-hint">Первое касание — показать, второе — перейти</p>
       </div>
 
       <div class="hero-stage" aria-hidden="true">
@@ -130,6 +131,48 @@
       </div>
     </section>
 
+    <section class="directions section" id="directions" aria-labelledby="directions-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Направления</p>
+          <h2 id="directions-title">Три способа работать с нами</h2>
+        </div>
+        <p>Каждое направление ведёт на свою страницу: там ассортимент, порядок работы и форма запроса.</p>
+      </div>
+
+      <div class="direction-blocks">
+        <article class="direction-block reveal">
+          <a href="wholesale.html">
+            <div class="direction-block-media"><img src="assets/opt-hero-crop.jpg" alt="Свеча Stoneglow Plum Blossom and Musk в фирменной коробке"></div>
+            <p class="eyebrow">Закупить оптом</p>
+            <h3>Готовые коллекции Stoneglow и Whispy</h3>
+            <p>Диффузоры, свечи, спреи для текстиля, саше, ароматы для автомобиля и подарочные наборы.</p>
+            <span class="direction-block-cta">Открыть каталог <b aria-hidden="true">&#8594;</b></span>
+          </a>
+        </article>
+
+        <article class="direction-block reveal">
+          <a href="private-label.html">
+            <div class="direction-block-media"><img src="assets/opt-set3.png" alt="Подарочная упаковка Whispy с аромадиффузором"></div>
+            <p class="eyebrow">Производство под своей маркой</p>
+            <h3>Линейка ароматов с вашим логотипом</h3>
+            <p>Виды продукции, направление аромата, тара, этикетка и упаковка собираются под задачу коллекции.</p>
+            <span class="direction-block-cta">Как устроен проект <b aria-hidden="true">&#8594;</b></span>
+          </a>
+        </article>
+
+        <article class="direction-block reveal">
+          <a href="fragrance.html">
+            <div class="direction-block-media"><img src="assets/hanna-1.png" alt="Ханна Шаркань в парфюмерном ателье"></div>
+            <p class="eyebrow">Создать аромат</p>
+            <h3>Парфюмерное ателье Hanna Sharkan</h3>
+            <p>Персональные духи, аромат для бренда, парфюм-бар для мероприятия и подарочный сертификат.</p>
+            <span class="direction-block-cta">Об ателье <b aria-hidden="true">&#8594;</b></span>
+          </a>
+        </article>
+      </div>
+    </section>
+
     <section class="catalog section" id="catalog" aria-labelledby="catalog-title">
       <div class="section-heading reveal">
         <div>
@@ -137,13 +180,6 @@
           <h2 id="catalog-title">Продукция для разных форматов продаж</h2>
         </div>
         <p>Категории собраны из действующего ассортимента. Цены и наличие предоставляются по запросу.</p>
-      </div>
-
-      <div class="filters reveal" role="group" aria-label="Фильтр категорий">
-        <button class="filter is-active" type="button" data-filter="all">Все</button>
-        <button class="filter" type="button" data-filter="home">Для дома</button>
-        <button class="filter" type="button" data-filter="gift">Подарки</button>
-        <button class="filter" type="button" data-filter="care">Уход</button>
       </div>
 
       <div class="product-grid">
@@ -204,15 +240,20 @@
           </div>
         </article>
       </div>
+
+      <div class="catalog-cta reveal">
+        <p>Цены, наличие и минимальные партии подтверждаются в ответ на оптовый запрос.</p>
+        <a class="button button-dark" href="wholesale.html">Весь оптовый каталог <span aria-hidden="true">&#8594;</span></a>
+      </div>
     </section>
 
     <section class="brands section" id="brands" aria-labelledby="brands-title">
       <div class="section-heading section-heading-light reveal">
         <div>
           <p class="eyebrow">Бренды и направления</p>
-          <h2 id="brands-title">Три специализации в одной системе</h2>
+          <h2 id="brands-title">Бренды, с которыми работаем</h2>
         </div>
-        <p>Каждое направление получает собственную страницу, каталог и понятный сценарий обращения.</p>
+        <p>Две продуктовые линейки для опта и парфюмерное ателье с авторскими композициями.</p>
       </div>
 
       <div class="brand-grid">
@@ -239,53 +280,6 @@
           <p>Персональные духи, ароматы для брендов, парфюм-бар и подарочные сертификаты.</p>
           <a href="fragrance.html">Об ателье <span aria-hidden="true">→</span></a>
         </article>
-      </div>
-    </section>
-
-    <section class="private-label" id="private-label" aria-labelledby="private-title">
-      <div class="private-intro reveal">
-        <p class="eyebrow">Контрактное производство</p>
-        <h2 id="private-title">Линейка ароматов под вашей маркой</h2>
-        <p>Формат проекта определяется задачей, ценовым уровнем и составом будущей коллекции. Можно работать с выбранными ароматами и готовой тарой или собирать решение с индивидуальными элементами.</p>
-        <a class="button button-light" href="#contacts">Обсудить проект</a>
-      </div>
-
-      <ol class="process-list">
-        <li class="reveal"><span>01</span><div><h3>Состав коллекции</h3><p>Выбираем виды продукции и количество ароматов.</p></div></li>
-        <li class="reveal"><span>02</span><div><h3>Ценовой уровень</h3><p>Определяем ориентиры для аромата, тары и упаковки.</p></div></li>
-        <li class="reveal"><span>03</span><div><h3>Дизайн и образцы</h3><p>Согласовываем этикетку, упаковку и, при необходимости, пилотную партию.</p></div></li>
-        <li class="reveal"><span>04</span><div><h3>Производство</h3><p>Комплектуем, маркируем, упаковываем и готовим заказ к поставке.</p></div></li>
-      </ol>
-
-      <div class="production-options">
-        <article class="reveal">
-          <p>Вариант 01</p>
-          <h3>Производство в России</h3>
-          <p>Подбор аромата, тары, этикетки и упаковки с комплектацией готовой продукции.</p>
-        </article>
-        <article class="reveal">
-          <p>Вариант 02</p>
-          <h3>На базе Stoneglow</h3>
-          <p>Выбор изделий и ароматов из каталога фабрики с дальнейшим брендированием проекта.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="atelier section" id="atelier" aria-labelledby="atelier-title">
-      <div class="atelier-image reveal reveal-left">
-        <img src="assets/hanna-1.png" alt="Ханна Шаркань в парфюмерном ателье">
-        <span>Москва / Парфюмерное ателье</span>
-      </div>
-      <div class="atelier-copy reveal">
-        <p class="eyebrow">Hanna Sharkan</p>
-        <h2 id="atelier-title">Ателье персональной парфюмерии</h2>
-        <p class="lead">Отдельное направление для частных клиентов, мероприятий и брендов, которым требуется собственная парфюмерная композиция.</p>
-        <div class="atelier-services">
-          <a href="#contacts">Персональные духи</a>
-          <a href="#contacts">Аромат для бренда</a>
-          <a href="#contacts">Парфюм-бар</a>
-          <a href="#contacts">Подарочный сертификат</a>
-        </div>
       </div>
     </section>
 
