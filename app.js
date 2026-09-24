@@ -187,6 +187,21 @@ if (inquiryButtons.length) {
   });
 }
 
+
+/* Галерея карточки товара: миниатюры переключают главное фото. */
+const pdpPhoto = document.getElementById('pdp-photo');
+const pdpThumbs = [...document.querySelectorAll('.pdp-thumb')];
+
+if (pdpPhoto && pdpThumbs.length) {
+  pdpThumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      pdpPhoto.src = thumb.dataset.src;
+      pdpPhoto.alt = thumb.dataset.alt || '';
+      pdpThumbs.forEach((item) => item.classList.toggle('is-active', item === thumb));
+    });
+  });
+}
+
 const siteHeader = document.querySelector('.site-header');
 
 if (siteHeader) {
