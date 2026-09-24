@@ -1356,6 +1356,21 @@ h1 {
 .service-card button:hover b { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) { .service-card button b { transition: none; } }
 
+
+
+/* Длинное слово в заголовке секции («электродиффузоры») раздвигало колонку сетки
+   шире экрана на 390px. Колонке разрешаем сжиматься, слову — переноситься. */
+.section-heading > div,
+.request-band > div { min-width: 0; }
+h1, h2 { hyphens: auto; }
+
+/* Единое состояние фокуса: тонкая системная обводка на кремовом фоне почти не видна.
+   :where оставляет нулевую специфичность — частные правила по-прежнему перекрывают. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
 /* ─── Карточка товара ──────────────────────────────────────────────────── */
 .pdp {
   display: grid;
