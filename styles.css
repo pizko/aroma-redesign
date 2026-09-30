@@ -443,6 +443,7 @@ h1 {
 .brands { color: var(--ivory); background: var(--ink); }
 .section-heading-light > p { color: #b9b3a9; }
 .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.19); }
+.brand-grid-two { grid-template-columns: repeat(2, 1fr); }
 .brand-card { padding: 1.2rem 1.2rem 2.2rem; background: var(--ink); }
 .brand-image { height: 42vw; max-height: 590px; overflow: hidden; background: #ebe7dc; }
 .brand-image img { width: 100%; height: 100%; object-fit: contain; transition: transform .55s ease; }
