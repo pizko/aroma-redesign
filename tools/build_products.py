@@ -50,7 +50,7 @@ def head(p):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{e(p['название'])} оптом | Орлан</title>
+  <title>{e(p['название'])} оптом | АМЛкорп</title>
   <meta name="description" content="{e(p['краткое'])} Оптовые поставки, условия по запросу.">
   <meta name="theme-color" content="#191817">
   <meta name="robots" content="noindex,nofollow">
@@ -94,7 +94,7 @@ def page(p):
   </div>
 
   <header class="site-header" id="top">
-    <a class="wordmark" href="index.html" aria-label="Орлан, на главную"><span>ОРЛАН</span><small>ароматический дом</small></a>
+    <a class="wordmark" href="index.html" aria-label="АМЛкорп, на главную"><span>АМЛкорп</span><small>ароматический дом</small></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-menu"><span></span><span></span><b>Меню</b></button>
     <nav class="main-nav" id="main-menu" aria-label="Основная навигация">
       <a href="wholesale.html" aria-current="page">Каталог</a>
@@ -152,7 +152,7 @@ def page(p):
   </main>
 
   <footer class="site-footer">
-    <a class="wordmark wordmark-footer" href="index.html"><span>ОРЛАН</span><small>ароматический дом</small></a>
+    <a class="wordmark wordmark-footer" href="index.html"><span>АМЛкорп</span><small>ароматический дом</small></a>
     <p>Цены и наличие уточняются по запросу.</p>
     <a href="#top">Наверх ↑</a>
   </footer>
