@@ -23,7 +23,7 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 button { font: inherit; }
 
@@ -325,14 +325,15 @@ h1 {
   box-shadow: 0 45px 60px rgba(0,0,0,.35);
   transform: rotate(-3deg);
 }
-.stage-card img { width: 100%; }
+.stage-card img { width: 100%; height: auto; }
 .stage-product {
   position: absolute;
+  height: auto;
   object-fit: contain;
   filter: drop-shadow(0 34px 32px rgba(0,0,0,.4));
 }
 .stage-product-wholesale { width: min(16vw, 220px); left: clamp(1.4rem, 4.5vw, 4.5rem); bottom: 4%; }
-.stage-package { position: absolute; width: min(40vw, 520px); left: clamp(1rem, 4vw, 4rem); bottom: -5%; filter: drop-shadow(0 42px 44px rgba(0,0,0,.45)); transform: rotate(-2deg); }
+.stage-package { position: absolute; width: min(40vw, 520px); height: auto; left: clamp(1rem, 4vw, 4rem); bottom: -5%; filter: drop-shadow(0 42px 44px rgba(0,0,0,.45)); transform: rotate(-2deg); }
 .stage-product-private { width: min(16vw, 215px); right: clamp(1.2rem, 4vw, 4rem); bottom: 8%; mix-blend-mode: screen; }
 .stage-perfumer { width: 100%; height: 100%; object-fit: cover; object-position: 47% 22%; }
 .stage-caption {
