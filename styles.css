@@ -1493,3 +1493,25 @@ h1, h2 { hyphens: auto; }
 @media (prefers-reduced-motion: reduce) {
   .goods-visual img, .goods-link span, .pdp-thumb { transition: none; }
 }
+
+/* Первый экран: на iPad вертикально и на телефоне сцена широкая и низкая (≈820×390),
+   а предметы считались только от ширины экрана — коробку Whispy, флакон и карточку
+   свечи резало сверху и снизу. Теперь размер ограничен ещё и высотой сцены (cqh),
+   пропорции картинок не меняются. Браузеры без cqh берут прежние значения выше. */
+.hero-stage { container-type: size; }
+.stage-card { width: min(35vw, 500px, 85cqh); }
+.stage-product-wholesale { width: min(16vw, 220px, 28cqh); }
+.stage-package { width: min(40vw, 520px, 66cqh); }
+.stage-product-private { width: min(16vw, 215px, 45cqh); }
+@media (max-width: 1000px) {
+  .stage-card { width: min(66vw, 560px, 85cqh); }
+  .stage-product-wholesale { width: min(23vw, 205px, 28cqh); }
+  .stage-product-private { width: min(23vw, 205px, 45cqh); }
+  .stage-package { width: min(65vw, 540px, 66cqh); }
+}
+@media (max-width: 760px) {
+  .stage-card { width: min(58vw, 85cqh); }
+  .stage-product-wholesale { width: min(22vw, 28cqh); }
+  .stage-package { width: min(56vw, 66cqh); bottom: -6%; }
+  .stage-product-private { width: min(23vw, 45cqh); }
+}
