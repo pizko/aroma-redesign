@@ -48,11 +48,10 @@ python3 -m http.server 8731
 
 ## Индексация
 
-Демонстрационная версия закрыта от поисковых систем: `noindex,nofollow` на всех страницах
-плюс `robots.txt`. Иначе в индексе оказались бы два почти одинаковых сайта.
-
-Чтобы открыть индексацию после согласования: заменить `noindex,nofollow` на `index,follow`
-в четырёх HTML-файлах и удалить `Disallow: /` из `robots.txt`.
+С 24.11.2026 боевой адрес — **https://rozlive.ru** (Beget, `~/aroma/public_html`), индексация открыта:
+`index,follow` на всех страницах, `robots.txt` со ссылкой на `sitemap.xml`, canonical, OG и JSON-LD
+указывают на rozlive.ru. Копия на GitHub Pages через canonical ссылается на rozlive.ru.
+`.htaccess` склеивает http/www/index.html в https://rozlive.ru (301; на GitHub Pages не действует).
 
 ## Доработка 23.09.2026
 

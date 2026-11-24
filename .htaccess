@@ -1,0 +1,9 @@
+# Один адрес сайта: https://rozlive.ru (без www) — 301 со всех остальных вариантов.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.rozlive\.ru$ [NC]
+RewriteRule ^(.*)$ https://rozlive.ru/$1 [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://rozlive.ru/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+RewriteRule ^index\.html$ https://rozlive.ru/ [R=301,L]
