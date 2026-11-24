@@ -1527,3 +1527,17 @@ h1, h2 { hyphens: auto; }
 }
 @media (max-width: 1000px) { .stage-package { width: min(65vw, 540px, 60cqh); } }
 @media (max-width: 760px)  { .stage-package { width: min(56vw, 60cqh); bottom: 5%; } }
+
+/* Сцена «Оптовые поставки»: только Stoneglow, вырезанные на прозрачный фон.
+   Свеча справа вместо карточки-фото, красный диффузор слева вместо Whispy.
+   Ширина ограничена и высотой сцены (cqh) — на низкой сцене ничего не наезжает на подписи. */
+.stage-candle { width: min(36vw, 480px, 80cqh); right: clamp(1.2rem, 4vw, 4rem); bottom: 14%; }
+.stage-product-wholesale { width: min(20vw, 270px, 46cqh); left: clamp(1.2rem, 4vw, 4rem); bottom: 6%; }
+@media (max-width: 1000px) {
+  .stage-candle { width: min(56vw, 480px, 80cqh); bottom: 10%; }
+  .stage-product-wholesale { width: min(28vw, 260px, 46cqh); }
+}
+@media (max-width: 760px) {
+  .stage-candle { width: min(56vw, 80cqh); right: 1rem; bottom: 10%; }
+  .stage-product-wholesale { width: min(30vw, 46cqh); left: 1rem; bottom: 5%; }
+}
