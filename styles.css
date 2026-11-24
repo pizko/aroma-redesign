@@ -905,6 +905,24 @@ h1 {
   transition-duration: var(--t-hover);
 }
 
+/* Клиентские фото: полный кадр без обрезки и увеличения при наведении.
+   Класс применяется только к новым фотографиям в карточках каталога. */
+.product-visual.customer-photo { padding: 1rem; background: #fff; }
+.product-visual.customer-photo img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+}
+.has-js .product-card .product-visual.customer-photo img,
+.has-js .reveal.is-visible .product-visual.customer-photo img,
+.has-js .reveal.is-visible.product-card:hover .product-visual.customer-photo img {
+  transform: none;
+}
+.catalog-care-note { margin: 1.5rem 0 0; color: #716b64; overflow-wrap: anywhere; }
+.product-visual.customer-photo + .product-meta p { overflow-wrap: anywhere; }
+
 /* Подчёркивание растёт слева направо, а не появляется целиком. */
 .main-nav a::after,
 .header-contact::after { transition: right var(--t-hover) var(--ease-lux); }
