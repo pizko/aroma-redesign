@@ -1512,6 +1512,18 @@ h1, h2 { hyphens: auto; }
 @media (max-width: 760px) {
   .stage-card { width: min(58vw, 85cqh); }
   .stage-product-wholesale { width: min(22vw, 28cqh); }
-  .stage-package { width: min(56vw, 66cqh); bottom: -6%; }
+  .stage-package { width: min(56vw, 60cqh); }
   .stage-product-private { width: min(23vw, 45cqh); }
 }
+
+/* Сцена «Собственная марка»: спрей справа убран, коробка Whispy стоит по центру
+   целиком — без обрезки снизу на любом экране (высота коробки ≤ 78% сцены). */
+.stage-package {
+  left: 0;
+  right: 0;
+  bottom: 5%;
+  margin-inline: auto;
+  width: min(40vw, 520px, 60cqh);
+}
+@media (max-width: 1000px) { .stage-package { width: min(65vw, 540px, 60cqh); } }
+@media (max-width: 760px)  { .stage-package { width: min(56vw, 60cqh); bottom: 5%; } }
