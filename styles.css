@@ -1567,3 +1567,7 @@ h1, h2, h3, .page-hero-copy h1, .pdp-copy h1 { hyphens: manual; -webkit-hyphens:
 .section-heading > p { font-size: .95rem; }
 .about-copy p { font-size: clamp(1.1rem, 1.45vw, 1.4rem); }
 .about-copy p + p { font-size: .95rem; }
+
+/* 26.11 (5): один блок контактов */
+.contact-grid-single { grid-template-columns: 1fr; background: transparent; }
+.contact-grid-single article { min-height: 0; }
