@@ -1552,3 +1552,8 @@ h1, h2 { hyphens: auto; }
 .brand-hanna .brand-image img { object-position: 50% 0; }
 .brand-image img[src$="brands-aromabox.jpg"] { object-fit: contain; }
 h1, h2, h3, .page-hero-copy h1, .pdp-copy h1 { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; word-break: normal; text-wrap: balance; }
+
+/* 26.11 (2): фото блока «Три способа» */
+.direction-block-media img[src$="dir-wholesale-spray.jpg"] { object-position: 68% 50%; }
+.direction-block-media img[src$="dir-private-giftset.jpg"] { object-position: 50% 50%; }
+.direction-block-media img[src$="dir-atelier-hanna.jpg"] { object-position: 50% 0; }
