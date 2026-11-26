@@ -1552,3 +1552,18 @@ h1, h2 { hyphens: auto; }
 .brand-hanna .brand-image img { object-position: 50% 0; }
 .brand-image img[src$="brands-aromabox.jpg"] { object-fit: contain; }
 h1, h2, h3, .page-hero-copy h1, .pdp-copy h1 { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; word-break: normal; text-wrap: balance; }
+
+/* 26.11 (2): фото блока «Три способа» */
+.direction-block-media img[src$="dir-wholesale-spray.jpg"] { object-position: 68% 50%; }
+.direction-block-media img[src$="dir-private-giftset.jpg"] { object-position: 50% 50%; }
+.direction-block-media img[src$="dir-atelier-hanna.jpg"] { object-position: 50% 0; }
+
+/* 26.11 (3): заголовки разделов и текст напротив — мельче, чтобы не рвались на 3–4 строки */
+.section-heading h2,
+.private-intro h2,
+.atelier-copy h2,
+.about-title h2,
+.contacts-heading h2 { font-size: clamp(2rem, 3vw, 3rem); line-height: 1.05; }
+.section-heading > p { font-size: .95rem; }
+.about-copy p { font-size: clamp(1.1rem, 1.45vw, 1.4rem); }
+.about-copy p + p { font-size: .95rem; }
